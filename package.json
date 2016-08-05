@@ -1,0 +1,24 @@
+{
+  "name": "test-utils",
+  "version": "1.0.0",
+  "description": "test-utils-for-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/potapovDim/test-utils.git"
+  },
+  "author": "potapovDim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/potapovDim/test-utils/issues"
+  },
+  "homepage": "https://github.com/potapovDim/test-utils#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "node-fetch": "^1.6.0",
+    "util": "^0.10.3"
+  }
+}

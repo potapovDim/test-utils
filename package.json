@@ -1,24 +1,20 @@
 {
-  "name": "test-utils",
-  "version": "1.0.0",
-  "description": "test-utils-for-api",
+  "name": "api-test-util",
+  "version": "0.0.1",
+  "description": "test util for api testing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --harmony --trace-deprecation --timeout 5000 $(find ./ -path '*.spec.*')"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/potapovDim/test-utils.git"
-  },
-  "author": "potapovDim",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/potapovDim/test-utils/issues"
-  },
-  "homepage": "https://github.com/potapovDim/test-utils#readme",
   "dependencies": {
-    "co": "^4.6.0",
-    "node-fetch": "^1.6.0",
-    "util": "^0.10.3"
+    "form-data": "^2.1.4",
+    "minimist": "^1.2.0",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

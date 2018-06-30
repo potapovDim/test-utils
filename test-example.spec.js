@@ -1,4 +1,4 @@
-const {expect} =  require('chai');
+const {expect} = require('chai');
 const {fetchy_util} = require('./index')('http://localhost:8087');
 
 describe('test', () => {

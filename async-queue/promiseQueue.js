@@ -2,6 +2,8 @@ const toPromisItems = (sleep, value) => new Promise((resolve) => {
   setTimeout(() => resolve(value), sleep)
 })
 
+
+
 class Queue {
   constructor() {
     this.dataItem = null
@@ -35,7 +37,17 @@ class Queue {
   }
 }
 
-class WorkeItem {
+
+function ELEMENTAPI(that /* worker class item*/) {
+  const elementAPI = {
+    sendKeys: () => {
+    }
+  }
+}
+
+
+
+class WorkeItemClient {
   constructor() {
     this.queue = new Queue()
   }
@@ -43,7 +55,6 @@ class WorkeItem {
   execute() {
     this.queue.runQueu()
     this.queue.clearQueue()
-
   }
 
   data(cb) {
@@ -74,7 +85,7 @@ class WorkeItem {
   }
 }
 
-const item = new WorkeItem()
+const item = new WorkeItemClient()
 
 item.functionFirst().functionFourth().data((value) => {
   console.log(value, ' !!!!!!!!!!!!!!!!!!')

@@ -17,5 +17,8 @@
     "koa2": "^2.0.0-alpha.7",
     "minimist": "^1.2.0",
     "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {
+    "moment": "^2.24.0"
   }
 }

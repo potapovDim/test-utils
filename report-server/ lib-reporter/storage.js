@@ -1,6 +1,7 @@
 const moment = require('moment')
 
-
+// date should be in format MMM Do YY
+// from moment moment().format('MMM Do YY')
 
 // storage should link
 function addNewBuildDescription(date, buildDescription, storage) {
@@ -35,4 +36,5 @@ function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
 
 function buildWeekReport() {
 
+  const currnetData = moment().format("MMM Do YY")
 }

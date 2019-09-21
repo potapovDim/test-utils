@@ -5,7 +5,7 @@
  */
 function reformatBuildStructure(build) {
   // merge not uniq cases
-  const notUqiqCases = build.reduce((mergedBuildCases, caseItem, index) => {
+  return build.reduce((mergedBuildCases, caseItem, index) => {
     // if itemUniq should be the same as index from call back index
     const itemIndexInBuildIndex = build.findIndex(({testCaseId}) => caseItem.testCaseId === testCaseId)
 
@@ -35,6 +35,7 @@ function reformatBuildStructure(build) {
       }
     } else {
       // in case if this test case is new just push this
+      caseItem.stackTraceError = [caseItem.stackTraceError]
       mergedBuildCases.push(caseItem)
     }
 

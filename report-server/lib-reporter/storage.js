@@ -53,45 +53,7 @@ function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
 }
 
 
-/**
- * @storage
- * @example storage
- * {
- *  // execution date
- *  // date should have some standart format
- *  date: {
- *    // build description
- *    'some build description': [
- *      {
- *        testCaseId: 'some test case id',
- *        stackTraceError: 'some test case fail error'
- *      }
- *    ]
- *  }
- * }
- */
-function buildPeriodReport(days = 7, storage) {
 
-  const days = Array.from(Array(days), (item, index) => {
-    // index starts from 0, bus substract day should be start from 1
-    const dateSubsctract = index + 1
-    const currnetData = moment().subtract(dateSubsctract, 'days').format("MMM Do YY")
-    return
-  })
-
-
-  const storageDates = Object.keys(storage)
-
-
-
-
-  return storageDates.reduce((reportStructure, ) => {
-
-  }, {})
-
-  const currnetData = moment().subtract(days, 'days').format("MMM Do YY")
-  storage
-}
 
 
 module.exports = {

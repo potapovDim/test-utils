@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test:reporter": "mocha \"specs/lib-reporter/**/*.spec.js\" --timeout 300000"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,11 @@
     "koa-router": "^7.4.0",
     "koa2": "^2.0.0-alpha.7",
     "minimist": "^1.2.0",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^1.7.3",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
-    "moment": "^2.24.0"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
   }
 }

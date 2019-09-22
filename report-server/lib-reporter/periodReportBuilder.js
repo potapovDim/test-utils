@@ -1,6 +1,9 @@
 /**
  *
  * @param {array} build
+ * @returns {array} @reformatedData
+ *
+ * @reformatedData
  *
  */
 function reformatBuildStructure(build) {
@@ -49,19 +52,19 @@ function reformatBuildStructure(build) {
  * @param {object} storage storage object
  * @example storage
  * {
-  *  // execution date
-  *  // date should have some standart format
-  *  date: {
-  *    // build description
-  *    'some build description': [
-  *      {
-  *        testCaseId: 'some test case id',
-  *        stackTraceError: 'some test case fail error'
-  *      }
-  *    ]
-  *  }
-  * }
-  */
+ *  // execution date
+ *  // date should have some standart format
+ *  date: {
+ *    // build description
+ *    'some build description': [
+ *      {
+ *        testCaseId: 'some test case id',
+ *        stackTraceError: 'some test case fail error'
+ *      }
+ *    ]
+ *  }
+ * }
+ */
 
 function buildPeriodReport(days = 7, storage) {
 
@@ -92,23 +95,9 @@ function buildPeriodReport(days = 7, storage) {
      *    ]
      * }
      */
-    const dayData = storage[day]
+    const dayBuildsData = storage[day]
 
-    const builds = Object.keys(dayData).reduce((buildReportStructure, build) => {
-      /**
-       * @example buildFailedCases <array<{testCaseId: string, stackTraceError: string}>>
-       * [
-       *  {
-       *    testCaseId: 'some test case id',
-       *    stackTraceError: 'some test case fail error'
-       *  }
-       * ]
-      */
-
-      const buildFailedCases = dayData[build]
-
-
-    }, [])
+    const builds = Object.keys(dayBuildsData).map((build) => reformatBuildStructure(build))
 
   }, {})
 }

@@ -41,6 +41,5 @@ describe('reformatBuildStructure', () => {
     expect(reformatedBuild.find(({testCaseId}) => testCaseId1 === testCaseId).stackTraceError.length).to.eql(3)
     expect(reformatedBuild.find(({testCaseId}) => testCaseId2 === testCaseId).stackTraceError.length).to.eql(2)
     expect(reformatedBuild.find(({testCaseId}) => testCaseId3 === testCaseId).stackTraceError.length).to.eql(1)
-
   })
 })

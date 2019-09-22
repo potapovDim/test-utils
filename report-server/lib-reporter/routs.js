@@ -1,4 +1,6 @@
 const Router = require('koa-router')
+const path = require('path')
+const fs = require('fs')
 
 /**
  * @storage
@@ -23,11 +25,33 @@ const storage = {
 
 const router = new Router()
 
-router.get('*', (ctx) => {
+// router.get('*', (ctx) => {
+//   ctx.status = 200
+//   ctx.body = 'OK'
+//   return ctx
+// });
+
+
+router.get('/view', (ctx) => {
+  ctx.header['Content-Type'] = 'text/html'
+  const indexStatic = fs.readFileSync(
+    path.resolve(__dirname, './static/index.html'), {encoding: 'utf8'}
+  )
   ctx.status = 200
-  ctx.body = 'OK'
+  ctx.body = indexStatic
   return ctx
-});
+})
+
+
+router.get('/script/index.js', (ctx) => {
+  ctx.header['Content-Type'] = 'text/javascript'
+  const indexStatic = fs.readFileSync(
+    path.resolve(__dirname, './static/index.js'), {encoding: 'utf8'}
+  )
+  ctx.status = 200
+  ctx.body = indexStatic
+  return ctx
+})
 
 
 router.post('/create-server', (ctx) => {

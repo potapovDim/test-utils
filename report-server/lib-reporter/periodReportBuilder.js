@@ -98,7 +98,6 @@ function buildPeriodReport(days = 7, storage) {
     const dayBuildsData = storage[day]
 
     const builds = Object.keys(dayBuildsData).map((build) => reformatBuildStructure(build))
-
   }, {})
 }
 

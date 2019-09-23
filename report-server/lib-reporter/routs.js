@@ -1,7 +1,10 @@
 const Router = require('koa-router')
 const path = require('path')
 const fs = require('fs')
-const {addNewBuildDescription, addNewTestCaseToBuild} = require('./storage')
+const {addNewBuildDescription, addNewTestCaseToBuild, buildPeriodReport} = require('./storage')
+// new instance of the Router
+const router = new Router()
+
 /**
  * @storage
  * @example storage
@@ -20,13 +23,6 @@ const {addNewBuildDescription, addNewTestCaseToBuild} = require('./storage')
  * }
  */
 const storage = {}
-
-const router = new Router()
-// router.get('*', (ctx) => {
-//   ctx.status = 200
-//   ctx.body = 'OK'
-//   return ctx
-// });
 
 router.get('/view', (ctx) => {
   ctx.header['Content-Type'] = 'text/html'
@@ -48,12 +44,6 @@ router.get('/script/index.js', (ctx) => {
   return ctx
 })
 
-router.get('/create-server', (ctx) => {
-  ctx.status = 200
-  ctx.body = {data: 'OK'}
-  return ctx
-})
-
 router.post('/add-new-build', (ctx) => {
   const {date, buildDescription} = ctx.request.body
   const result = addNewBuildDescription(date, buildDescription, storage)
@@ -66,7 +56,34 @@ router.post('/add-new-build', (ctx) => {
     ctx.body = {data: 'Bad data'}
   }
   return ctx
+})
 
+router.post('/add-new-testcase-to-build', (ctx) => {
+  const {date, buildDescription, testCaseData} = ctx.request.body
+  const result = addNewTestCaseToBuild(date, buildDescription, testCaseData, storage)
+
+  if(result) {
+    ctx.status = 200
+    ctx.body = {data: 'OK'}
+  } else {
+    ctx.status = 400
+    ctx.body = {data: 'Bad data'}
+  }
+  return ctx
+})
+
+router.post('/period-report', (ctx) => {
+  const {period} = ctx.request.body
+  const result = buildPeriodReport(period, storage)
+
+  if(result) {
+    ctx.status = 200
+    ctx.body = {data: 'OK'}
+  } else {
+    ctx.status = 400
+    ctx.body = {data: 'Bad data'}
+  }
+  return ctx
 })
 
 module.exports = {

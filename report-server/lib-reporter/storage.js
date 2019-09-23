@@ -1,6 +1,7 @@
 const moment = require('moment')
 const {dateFormat} = require('./constants')
 const {isRequiredFormat} = require('./utils')
+const {buildPeriodReport} = require('./periodReportBuilder')
 
 function assertDateFormat(date) {
   if(isRequiredFormat(date)) {
@@ -55,5 +56,6 @@ function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
 
 module.exports = {
   addNewBuildDescription,
-  addNewTestCaseToBuild
+  addNewTestCaseToBuild,
+  buildPeriodReport
 }

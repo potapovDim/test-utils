@@ -53,11 +53,7 @@ function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
 }
 
 
-
-
-
 module.exports = {
   addNewBuildDescription,
-  addNewTestCaseToBuild,
-  buildPeriodReport
+  addNewTestCaseToBuild
 }

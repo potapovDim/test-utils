@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const path = require('path')
 const fs = require('fs')
-
+const {addNewBuildDescription, addNewTestCaseToBuild} = require('./storage')
 /**
  * @storage
  * @example storage
@@ -19,18 +19,14 @@ const fs = require('fs')
  *  }
  * }
  */
-const storage = {
-
-}
+const storage = {}
 
 const router = new Router()
-
 // router.get('*', (ctx) => {
 //   ctx.status = 200
 //   ctx.body = 'OK'
 //   return ctx
 // });
-
 
 router.get('/view', (ctx) => {
   ctx.header['Content-Type'] = 'text/html'
@@ -42,7 +38,6 @@ router.get('/view', (ctx) => {
   return ctx
 })
 
-
 router.get('/script/index.js', (ctx) => {
   ctx.header['Content-Type'] = 'text/javascript'
   const indexStatic = fs.readFileSync(
@@ -53,15 +48,26 @@ router.get('/script/index.js', (ctx) => {
   return ctx
 })
 
-
-router.post('/create-server', (ctx) => {
-
-  console.log(ctx.request.body)
+router.get('/create-server', (ctx) => {
   ctx.status = 200
-  ctx.body = 'OK'
+  ctx.body = {data: 'OK'}
   return ctx
 })
 
+router.post('/add-new-build', (ctx) => {
+  const {date, buildDescription} = ctx.request.body
+  const result = addNewBuildDescription(date, buildDescription, storage)
+
+  if(result) {
+    ctx.status = 200
+    ctx.body = {data: 'OK'}
+  } else {
+    ctx.status = 400
+    ctx.body = {data: 'Bad data'}
+  }
+  return ctx
+
+})
 
 module.exports = {
   router

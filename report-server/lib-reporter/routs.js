@@ -60,7 +60,12 @@ router.post('/add-new-build', (ctx) => {
 
 router.post('/add-new-testcase-to-build', (ctx) => {
   const {date, buildDescription, testCaseData} = ctx.request.body
+
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 1")
+
   const result = addNewTestCaseToBuild(date, buildDescription, testCaseData, storage)
+
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 2")
 
   if(result) {
     ctx.status = 200

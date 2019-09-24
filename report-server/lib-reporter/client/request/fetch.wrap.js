@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const {formReqBody, formReqHeader, formReqUrl, logRequest} = require('./util')
+const {formReqBody, formReqHeader, formReqUrl, logRequest} = require('./utils')
 
 /**
  *

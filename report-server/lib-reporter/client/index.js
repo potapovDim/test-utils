@@ -13,7 +13,11 @@ class ReporterClient {
     return this.fetch.post({path: '/add-new-testcase-to-build', body: {date, buildDescription, testCaseData}})
   }
 
-  async getPeriodReport() {
-    return this.fetch.post({path: '/add-new-testcase-to-build', body: {date, buildDescription, testCaseData}})
+  async getPeriodReport(period) {
+    return this.fetch.post({path: '/add-new-testcase-to-build', body: {period}})
   }
+}
+
+module.exports = {
+  ReporterClient
 }

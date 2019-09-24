@@ -4,6 +4,7 @@ const {isRequiredFormat} = require('./utils')
 const {buildPeriodReport} = require('./periodReportBuilder')
 
 function assertDateFormat(date) {
+  console.log(date, 'AAAAAAAAAAAAAAAAAAAAAAAA')
   if(isRequiredFormat(date)) {
     return
   }
@@ -35,6 +36,7 @@ function addNewBuildDescription(date, buildDescription, storage) {
 
 
 function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
+  console.log('!!!!!!!', date, buildDescription, testCaseData)
   // assert date format
   assertDateFormat(date)
 

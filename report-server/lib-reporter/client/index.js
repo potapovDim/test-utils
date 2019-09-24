@@ -14,7 +14,7 @@ class ReporterClient {
   }
 
   async getPeriodReport(period) {
-    return this.fetch.post({path: '/add-new-testcase-to-build', body: {period}})
+    return this.fetch.post({path: '/period-report', body: {period}})
   }
 }
 

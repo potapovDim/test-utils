@@ -4,7 +4,6 @@ const {isRequiredFormat} = require('./utils')
 const {buildPeriodReport} = require('./periodReportBuilder')
 
 function assertDateFormat(date) {
-  console.log(date, 'AAAAAAAAAAAAAAAAAAAAAAAA')
   if(isRequiredFormat(date)) {
     return
   }
@@ -29,14 +28,12 @@ function addNewBuildDescription(date, buildDescription, storage) {
   }
   // add new build description as a new empty array
   storage[date][buildDescription] = []
-
   // true as a success
   return true
 }
 
 
 function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
-  console.log('!!!!!!!', date, buildDescription, testCaseData)
   // assert date format
   assertDateFormat(date)
 
@@ -49,9 +46,7 @@ function addNewTestCaseToBuild(date, buildDescription, testCaseData, storage) {
   }
 
   storage[date][buildDescription].push(testCaseData)
-
   // true as a success
-
   return true
 }
 

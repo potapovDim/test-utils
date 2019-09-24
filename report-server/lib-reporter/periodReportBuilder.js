@@ -1,3 +1,4 @@
+const moment = require('moment')
 /**
  *
  * @param {array} build
@@ -7,6 +8,7 @@
  *
  */
 function reformatBuildStructure(build) {
+  console.log(build, '!!!!!!!')
   // merge not uniq cases
   return build.reduce((mergedBuildCases, caseItem, index) => {
     // if itemUniq should be the same as index from call back index
@@ -70,7 +72,7 @@ function buildPeriodReport(days = 7, storage) {
 
   const reportPeriod = Array.from(Array(days), (item /*item is useless */, index) => {
     // index starts from 0, bus substract day should be start from 1
-    const dateSubsctract = index + 1
+    const dateSubsctract = index
     const dayWhatShouldBeIncludedInReport = moment()
       .subtract(dateSubsctract, 'days')
       .format("MMM Do YY")
@@ -81,7 +83,6 @@ function buildPeriodReport(days = 7, storage) {
   const storageDatesWhatShouldBeIncluded = Object
     .keys(storage)
     .filter((storageDayKey) => reportPeriod.includes(storageDayKey))
-
 
   return storageDatesWhatShouldBeIncluded.reduce((reportStructure, day) => {
     /**
@@ -97,7 +98,21 @@ function buildPeriodReport(days = 7, storage) {
      */
     const dayBuildsData = storage[day]
 
-    const builds = Object.keys(dayBuildsData).map((build) => reformatBuildStructure(build))
+
+    console.log(typeof dayBuildsData)
+
+    const builds = Object
+      .keys(dayBuildsData)
+      .reduce((buildStructure, buildDescription) => {
+
+        buildStructure[buildDescription] = reformatBuildStructure(dayBuildsData[buildDescription])
+
+        return buildStructure
+      }, {})
+
+    reportStructure[day] = builds
+
+    return reportStructure
   }, {})
 }
 

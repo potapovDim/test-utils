@@ -22,6 +22,9 @@ const router = new Router()
  *  }
  * }
  */
+
+
+
 const storage = {}
 
 router.get('/view', (ctx) => {
@@ -60,12 +63,7 @@ router.post('/add-new-build', (ctx) => {
 
 router.post('/add-new-testcase-to-build', (ctx) => {
   const {date, buildDescription, testCaseData} = ctx.request.body
-
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 1")
-
   const result = addNewTestCaseToBuild(date, buildDescription, testCaseData, storage)
-
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 2")
 
   if(result) {
     ctx.status = 200
@@ -83,7 +81,7 @@ router.post('/period-report', (ctx) => {
 
   if(result) {
     ctx.status = 200
-    ctx.body = {data: 'OK'}
+    ctx.body = result
   } else {
     ctx.status = 400
     ctx.body = {data: 'Bad data'}

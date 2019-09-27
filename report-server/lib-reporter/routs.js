@@ -1,31 +1,23 @@
 const Router = require('koa-router')
 const path = require('path')
 const fs = require('fs')
-const {addNewBuildDescription, addNewTestCaseToBuild, buildPeriodReport} = require('./storage')
 // new instance of the Router
 const router = new Router()
 
 /**
- * @storage
- * @example storage
- * {
- *  // execution date
- *  // date should have some standart format
- *  date: {
- *    // build description
- *    'some build description': [
- *      {
- *        testCaseId: 'some test case id',
- *        stackTraceError: 'some test case fail error'
- *      }
- *    ]
+ * @storage [array<object>]
+ * @example
+ * [
+ *  {
+ *    id: string,
+ *    build: string,
+ *    date: string,
+ *    stackTrace: string
  *  }
- * }
+ * ]
  */
+const storage = []
 
-
-
-const storage = {}
 
 router.get('/view', (ctx) => {
   ctx.header['Content-Type'] = 'text/html'
@@ -47,45 +39,31 @@ router.get('/script/index.js', (ctx) => {
   return ctx
 })
 
-router.post('/add-new-build', (ctx) => {
-  const {date, buildDescription} = ctx.request.body
-  const result = addNewBuildDescription(date, buildDescription, storage)
+router.post('/add-new-case', (ctx) => {
+  /**
+   * @testCaseData
+   * @example
+   * {
+   *  id: string,
+   *  build: string,
+   *  date: string,
+   *  stackTrace: string
+   * }
+   *
+   */
+  const {testCaseData} = ctx.request.body
 
-  if(result) {
-    ctx.status = 200
-    ctx.body = {data: 'OK'}
-  } else {
-    ctx.status = 400
-    ctx.body = {data: 'Bad data'}
-  }
+  storage.push(testCaseData)
+
+  ctx.status = 200
+  ctx.body = {data: 'OK'}
+
   return ctx
 })
 
-router.post('/add-new-testcase-to-build', (ctx) => {
-  const {date, buildDescription, testCaseData} = ctx.request.body
-  const result = addNewTestCaseToBuild(date, buildDescription, testCaseData, storage)
-
-  if(result) {
-    ctx.status = 200
-    ctx.body = {data: 'OK'}
-  } else {
-    ctx.status = 400
-    ctx.body = {data: 'Bad data'}
-  }
-  return ctx
-})
-
-router.post('/period-report', (ctx) => {
-  const {period} = ctx.request.body
-  const result = buildPeriodReport(period, storage)
-
-  if(result) {
-    ctx.status = 200
-    ctx.body = result
-  } else {
-    ctx.status = 400
-    ctx.body = {data: 'Bad data'}
-  }
+router.get('/get-test-cases', (ctx) => {
+  ctx.status = 200
+  ctx.body = [...storage]
   return ctx
 })
 

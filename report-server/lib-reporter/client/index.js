@@ -5,16 +5,12 @@ class ReporterClient {
     this.fetch = fetchWrap(host)
   }
 
-  async createNewBuild({date, buildDescription}) {
-    return this.fetch.post({path: '/add-new-build', body: {date, buildDescription}})
+  async addNewCase(testCaseData) {
+    return this.fetch.post({path: '/add-new-case', body: {testCaseData}})
   }
 
-  async addTestCaseToBuild({date, buildDescription, testCaseData}) {
-    return this.fetch.post({path: '/add-new-testcase-to-build', body: {date, buildDescription, testCaseData}})
-  }
-
-  async getPeriodReport(period) {
-    return this.fetch.post({path: '/period-report', body: {period}})
+  async getCases(testCaseData) {
+    return this.fetch.get({path: '/get-test-cases', body: {testCaseData}})
   }
 }
 

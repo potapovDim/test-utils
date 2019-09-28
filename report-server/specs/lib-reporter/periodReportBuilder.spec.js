@@ -1,8 +1,8 @@
 const {expect} = require('chai')
 const {reformatBuildStructure} = require('../../lib-reporter/periodReportBuilder')
 
-describe('reformatBuildStructure', () => {
-  it('positive reformat', () => {
+describe('reformatBuildStructure', function() {
+  it('positive reformat', function() {
     // not uniq cases
     const testCaseId1 = 'TEST1'
     const testCaseId2 = 'TEST2'

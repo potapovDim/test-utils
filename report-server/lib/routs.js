@@ -4,22 +4,11 @@ const fs = require('fs')
 // new instance of the Router
 const router = new Router()
 
-/**
- * @storage [array<object>]
- * @example
- * [
- *  {
- *    id: string,
- *    build: string,
- *    date: string,
- *    stackTrace: string
- *  }
- * ]
- */
+const {ADDAPTER = 'memory'} = process.env
 
-const storage = []
+const storage = require('./adapters')[ADDAPTER]
 
-
+// view rout return index.html
 router.get('/view', (ctx) => {
   ctx.header['Content-Type'] = 'text/html'
   const indexStatic = fs.readFileSync(
@@ -30,6 +19,7 @@ router.get('/view', (ctx) => {
   return ctx
 })
 
+// script static serving
 router.get('/script/index.js', (ctx) => {
   ctx.header['Content-Type'] = 'text/javascript'
   const indexStatic = fs.readFileSync(
@@ -39,6 +29,7 @@ router.get('/script/index.js', (ctx) => {
   ctx.body = indexStatic
   return ctx
 })
+
 
 router.post('/add-new-case', (ctx) => {
   /**
@@ -54,7 +45,7 @@ router.post('/add-new-case', (ctx) => {
    */
   const {testCaseData} = ctx.request.body
 
-  storage.push(testCaseData)
+  storage.setToStorage(testCaseData)
 
   ctx.status = 200
   ctx.body = {data: 'OK'}
@@ -63,10 +54,12 @@ router.post('/add-new-case', (ctx) => {
 })
 
 router.get('/get-test-cases', (ctx) => {
+  console.log(ctx.request.query)
   ctx.status = 200
-  ctx.body = [...storage]
+  ctx.body = storage.getStorageData()
   return ctx
 })
+
 
 module.exports = {
   router

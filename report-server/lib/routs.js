@@ -1,7 +1,8 @@
-const Router = require('koa-router')
 const path = require('path')
 const fs = require('fs')
+const {parseInt} = require('./utils')
 // new instance of the Router
+const Router = require('koa-router')
 const router = new Router()
 
 const {ADDAPTER = 'memory'} = process.env
@@ -33,7 +34,7 @@ router.get('/script/index.js', (ctx) => {
 
 router.post('/add-new-case', (ctx) => {
   /**
-   * @testCaseData
+   * @data
    * @example
    * {
    *  id: string,
@@ -43,9 +44,9 @@ router.post('/add-new-case', (ctx) => {
    * }
    *
    */
-  const {testCaseData} = ctx.request.body
+  const {data} = ctx.request.body
 
-  storage.setToStorage(testCaseData)
+  storage.setToStorage(data)
 
   ctx.status = 200
   ctx.body = {data: 'OK'}
@@ -54,12 +55,10 @@ router.post('/add-new-case', (ctx) => {
 })
 
 router.get('/get-test-cases', (ctx) => {
-  console.log(ctx.request.query)
   ctx.status = 200
-  ctx.body = storage.getStorageData()
+  ctx.body = storage.getStorageData(parseInt(ctx.request.query.offset), parseInt(ctx.request.query.limit))
   return ctx
 })
-
 
 module.exports = {
   router

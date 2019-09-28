@@ -18,10 +18,10 @@
     "koa-router": "^7.4.0",
     "koa2": "^2.0.0-alpha.7",
     "minimist": "^1.2.0",
-    "moment": "^2.24.0",
-    "node-fetch": "^2.3.0"
+    "moment": "^2.24.0"
   },
   "devDependencies": {
+    "node-fetch": "^2.3.0",
     "chai": "^4.2.0",
     "eslint": "^6.4.0",
     "eslint-plugin-chai-expect": "^2.0.1",

@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 
 const app = new Koa()
-const {router} = require('./lib-reporter/routs')
+const {router} = require('./lib/routs.js')
 
 app
   .use(cors())

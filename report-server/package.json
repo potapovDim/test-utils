@@ -22,6 +22,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-chai-expect": "^2.0.1",
+    "eslint-plugin-mocha": "^6.1.1",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2"
   }

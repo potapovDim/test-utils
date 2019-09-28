@@ -16,6 +16,7 @@ const router = new Router()
  *  }
  * ]
  */
+
 const storage = []
 
 
@@ -32,7 +33,7 @@ router.get('/view', (ctx) => {
 router.get('/script/index.js', (ctx) => {
   ctx.header['Content-Type'] = 'text/javascript'
   const indexStatic = fs.readFileSync(
-    path.resolve(__dirname, './static/index.js'), {encoding: 'utf8'}
+    path.resolve(__dirname, './static/script/index.js'), {encoding: 'utf8'}
   )
   ctx.status = 200
   ctx.body = indexStatic

@@ -1,8 +1,22 @@
+/**
+ * test case data example
+ * @example cases
+ * {
+ *  id: string,
+ *  build: string,
+ *  date: string,
+ *  stackTrace: string
+ * }
+ */
 function getTestCases() {
   return fetch(`${window.origin}/get-test-cases`)
     .then(res => res.json())
     .then(renderCases)
     .catch(console.error)
+}
+
+function sortCasesById(cases) {
+
 }
 
 
